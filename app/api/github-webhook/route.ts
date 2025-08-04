@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     // The 'X-GitHub-Event' header tells you what kind of event it is.
     // GitHub also sends a 'ping' event when you set up the webhook, which is good for a simple "pong" response.
     const event = req.headers.get("X-GitHub-Event");
-    console.log("Key from env:", process.env.TRIGGER_SECRET_KEY);
+    console.log("Key from envv:", process.env.TRIGGER_SECRET_KEY);
 
 
     if (event === "ping") {
