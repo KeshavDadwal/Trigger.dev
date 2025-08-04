@@ -60,6 +60,16 @@ export const multiplynumbersTask = task({
   },
 });
 
+export const dividenumbersTask = task({
+  id: "divide-numbers",
+  maxDuration: 300,
+  run: async (payload: { a: number; b: number }, { ctx }) => {
+    const result = payload.a / payload.b;
+    logger.log("Divide numbers", { a: payload.a, b: payload.b, result });
+    return { result };
+  },
+});
+
 export const timestampTask = task({
   id: "fetch-timestamp",
   maxDuration: 300,
