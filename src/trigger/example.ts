@@ -1,16 +1,21 @@
 import { logger, task, wait } from "@trigger.dev/sdk/v3";
 
-// Hello world task
+type HelloWorldPayload = {
+  userId: string;
+};
+
 export const helloWorldTask = task({
   id: "hello-world",
-  maxDuration: 300,
-  run: async (payload: any, { ctx }) => {
-    logger.log("Hello, world!", { payload, ctx });
+  run: async (payload: HelloWorldPayload, { ctx }) => {
+    logger.info("Hello, world task triggered", {
+      userId: payload.userId,
+      runId: ctx.run.id, // Optional: helpful for tracing
+    });
 
     await wait.for({ seconds: 5 });
 
     return {
-      message: "Hello, world!",
+      message: `Hello from ${payload.userId}!`,
     };
   },
 });
